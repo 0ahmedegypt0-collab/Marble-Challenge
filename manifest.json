@@ -1,0 +1,21 @@
+{
+  "name": "Marble Challenge",
+  "short_name": "Marble",
+  "description": "Marble Challenge V12",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./Marble_Challenge_V12_fixed.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#080316",
+  "theme_color": "#080316",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
