@@ -7,6 +7,7 @@ on:
       - '*.gradle'
       - 'settings.gradle'
       - '.github/workflows/build-apk.yml'
+      - 'file_000000009ae081f49fdc8eefdf484eda.png'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -25,6 +26,15 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.9'
+      - name: Generate launcher icons from the original PNG
+        run: |
+          test -s file_000000009ae081f49fdc8eefdf484eda.png
+          mkdir -p app/src/main/res/mipmap-mdpi app/src/main/res/mipmap-hdpi app/src/main/res/mipmap-xhdpi app/src/main/res/mipmap-xxhdpi app/src/main/res/mipmap-xxxhdpi
+          convert file_000000009ae081f49fdc8eefdf484eda.png -strip -resize 48x48^ -gravity center -extent 48x48 app/src/main/res/mipmap-mdpi/ic_launcher.png
+          convert file_000000009ae081f49fdc8eefdf484eda.png -strip -resize 72x72^ -gravity center -extent 72x72 app/src/main/res/mipmap-hdpi/ic_launcher.png
+          convert file_000000009ae081f49fdc8eefdf484eda.png -strip -resize 96x96^ -gravity center -extent 96x96 app/src/main/res/mipmap-xhdpi/ic_launcher.png
+          convert file_000000009ae081f49fdc8eefdf484eda.png -strip -resize 144x144^ -gravity center -extent 144x144 app/src/main/res/mipmap-xxhdpi/ic_launcher.png
+          convert file_000000009ae081f49fdc8eefdf484eda.png -strip -resize 192x192^ -gravity center -extent 192x192 app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
       - name: Install Android SDK packages
         run: |
           yes | ${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager --licenses
