@@ -21,10 +21,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Prepare website
+      - name: Prepare website and Android update package
         run: |
           mkdir -p site
           cp Marble_Challenge_V12_fixed.html site/index.html
+          cp Marble_Challenge_V12_fixed.html site/game.html
+          HASH=$(sha256sum site/game.html | cut -d ' ' -f 1)
+          printf '{"version":"%s","sha256":"%s"}\n' "$GITHUB_SHA" "$HASH" > site/version.json
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
       - name: Upload website artifact
