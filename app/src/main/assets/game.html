@@ -707,7 +707,7 @@ document.getElementById('fpsBadge').style.pointerEvents='auto';
 document.getElementById('fpsBadge').title='اضغط لتغيير جودة الأداء';
 document.getElementById('fpsBadge').onclick=null;
 
-function frame(t){let dt=Math.min(.03,(t-lastTime)/1000||0);lastTime=t;fpsFrames++;if(t-fpsStamp>500){const fps=Math.round(fpsFrames*1000/(t-fpsStamp||1));const el=document.getElementById('fpsBadge');if(el&&showFps)el.textContent='FPS: '+fps;fpsFrames=0;fpsStamp=t;}if(gameState==='playing'){physics(dt);if(!endlessMode&&playerIndex!==0&&!shooterBusy&&turnUsed<3&&t>=aiCooldown)doAiShot()}render(t);requestAnimationFrame(frame)}
+function frame(t){let dt=Math.min(.03,(t-lastTime)/1000||0);lastTime=t;if(gameState==='playing'){fpsFrames++;if(t-fpsStamp>500){const fps=Math.round(fpsFrames*1000/(t-fpsStamp||1));const el=document.getElementById('fpsBadge');if(el&&showFps)el.textContent='FPS: '+fps;fpsFrames=0;fpsStamp=t;}physics(dt);if(!endlessMode&&playerIndex!==0&&!shooterBusy&&turnUsed<3&&t>=aiCooldown)doAiShot();render(t);requestAnimationFrame(frame)}else{setTimeout(()=>requestAnimationFrame(frame),120)}}
 function renderShop(){
  const grid=document.getElementById('shopGrid');if(!grid)return;grid.innerHTML='';
  const list=shopCategory==='marble'?skins:extraSkins[shopCategory]||[];
