@@ -286,6 +286,11 @@ html,body{overscroll-behavior:none}
 #skillModeScreen .mode-foot{margin-top:15px;padding-top:12px;border-top:1px solid #ffffff16;color:#748da2;font-size:10px}
 @media(max-width:360px){#skillModeScreen .skill-mode-modal{padding:22px 13px!important}#skillModeScreen .mode-choice{min-height:70px!important}}
 </style>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#080316">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
 <body>
 <canvas id="game" aria-label="لعبة تحدي الدعابل"></canvas>
@@ -766,6 +771,7 @@ document.body.classList.add('lobby-mode');renderLevelMap();document.getElementBy
 refreshSettings();refreshWheel();resize();requestAnimationFrame(frame);
 })();
 </script>
+  <script>if ("serviceWorker" in navigator) { window.addEventListener("load", () => navigator.serviceWorker.register("./service-worker.js").catch(console.error)); }</script>
 </body>
 </html>
 <style>
