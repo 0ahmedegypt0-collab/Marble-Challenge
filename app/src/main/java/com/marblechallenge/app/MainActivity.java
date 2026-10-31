@@ -25,8 +25,14 @@ public class MainActivity extends Activity {
         immersive();
         webView = new WebView(this);
         webView.setBackgroundColor(0xFF080316);
+        webView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+        webView.setOverScrollMode(View.OVER_SCROLL_NEVER);
+        webView.setVerticalScrollBarEnabled(false);
+        webView.setHorizontalScrollBarEnabled(false);
         WebSettings s = webView.getSettings();
         s.setJavaScriptEnabled(true);
+        s.setLoadsImagesAutomatically(true);
+        s.setCacheMode(WebSettings.LOAD_DEFAULT);
         s.setDomStorageEnabled(true);
         s.setDatabaseEnabled(true);
         s.setAllowFileAccess(true);
