@@ -26,6 +26,10 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.9'
+      - name: Install ImageMagick
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y imagemagick
       - name: Generate launcher icons from the original PNG
         run: |
           test -s file_000000009ae081f49fdc8eefdf484eda.png
