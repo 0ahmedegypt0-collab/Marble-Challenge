@@ -1,0 +1,13 @@
+plugins { id 'com.android.application' }
+
+android {
+    namespace 'com.marblechallenge.app'
+    compileSdk 35
+    defaultConfig {
+        applicationId 'com.marblechallenge.app'
+        minSdk 23
+        targetSdk 35
+        versionCode 12
+        versionName '12.0'
+    }
+}
