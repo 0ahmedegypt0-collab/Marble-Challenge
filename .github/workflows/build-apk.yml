@@ -1,4 +1,6 @@
 name: Build Marble Challenge APK
+permissions:
+  contents: write
 on:
   workflow_dispatch:
   push:
@@ -51,3 +53,11 @@ jobs:
           name: Marble-Challenge-debug-APK
           path: app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
+
+      - name: Publish direct APK download
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          TAG="latest-apk"
+          gh release view "$TAG" >/dev/null 2>&1 || gh release create "$TAG" --title "Marble Challenge - Latest APK" --notes "Direct Android APK download for Marble Challenge."
+          gh release upload "$TAG" app/build/outputs/apk/debug/app-debug.apk --clobber
